@@ -4,23 +4,36 @@
 # Our Group Task
 
 ## Project Description
-Our Group Project task is to build a web application that meets the following requirements:
-- Uses at least two server-side APIs
-- Styled with CSS framework such as Bootstrap
-- Deployed on GitHub Pages
-- Interactive with modals instead of alerts
-- Uses client-side storage for persistent data
-- Responsive
-- Polished user interface
-- Clean code repository with good coding standards
-- Quality README with a unique name, description, technologies used, screenshot, and link to the deployed application.
+Our Group Project task is to build a web application that uses at least two server-side APIs, is styled with a CSS framework like Bootstrap, is deployed on GitHub Pages, is interactive with modals instead of alerts, uses client-side storage for persistent data, is responsive, has a polished user interface, has a clean code repository with good coding standards, and has a quality README with a unique name, description, technologies used, screenshot, and link to the deployed application.
 
-## User Story
-As a foodie, I want to be able to choose between eating in or eating out:
-- Eating In: 
-  - I want access to information to cook my own meals, including food item names, descriptions, recipes, calories, nutrients, instructions, and video links. 
-- Eating Out: 
-  - I want to be able to order from my favorite restaurant using my postcode or city name, and access information such as location on the map, city name, restaurant name, address, postcode, menu, and website URL.
+
+## Introduction
+A foodie app that provides information for cooking your own meals or ordering from your favourite restaurant. Choose between eating in or eating out, and get the information you need to enjoy your meal.
+
+## Eating In
+As a foodie, you want to cook your own meals in the comfort of your own home. You need information about the food you want to prepare, including:
+- Food item names
+- Descriptions
+- Recipes
+- Calories
+- Nutrients
+- Instructions
+- Video links
+
+## Eating Out
+You also want to be able to order from your favourite restaurant. You need the ability to search for a restaurant using your own postcode or city name. The search should provide you with the following information:
+- Location on the map
+- City name
+- Restaurant's name, address, and postcode
+- Restaurant menu and website URL
+
+## Target Audience
+Foodies who want to choose between eating in or eating out, and expect a set of desired outcomes based on their choice.
+
+## Development Team
+This README provides more context and helps to prioritize features that are most important for the user.
+
+
 
 ## Acceptance Criteria
 ### Mandatory Requirements
