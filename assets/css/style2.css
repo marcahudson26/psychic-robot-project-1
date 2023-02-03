@@ -5,14 +5,22 @@
     --card-color: #202a44;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+} 
+
 body{
     background-color: var(--primary-color);
+    margin: 0 0 20px; /* bottom = footer height*/
 }
 
 /* Header Section */
 /* Nav*/
 .custom-nav{
     background-color: var(--secondary-color);
+    height: 4em;
+    align-content: center;
 }
 .custom-nav-item{
     background-color: var(--primary-color);
@@ -47,4 +55,26 @@ body{
     color: #16181b;
     text-decoration: none;
     background-color: var(--secondary-color);
+}
+
+/* Footer */
+footer{
+    background-color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.custom-btn{
+    margin: 10px;
+    background-color: #D9D9D9;
+}
+.custom-btn a{
+    color: var(--primary-color);
+}
+.custom-btn a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
 }
