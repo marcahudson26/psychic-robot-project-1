@@ -1,3 +1,4 @@
+
 // let userInput = "sushi"
 
 // // this gets the ingredients
@@ -108,4 +109,5 @@
 //         console.log(restaurants.features.map(x => x.properties.name).filter(x => x))
 //     })
 // })
-// 
+
+
