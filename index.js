@@ -1,3 +1,4 @@
+
 let userInput = "sushi"
 
 // this gets the ingredients
@@ -105,7 +106,8 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${userInput}`, optio
 
 // getLocation(userInputt).then(placeId => {
 //     getRestaurants(placeId).then(restaurants => {
-//         console.log(restaurants)
+//         console.log(restaurants.features.map(x => x.properties.name).filter(x => x))
 //     })
 // })
-// .features.map(x => x.properties.name).filter(x => x)
+
+
