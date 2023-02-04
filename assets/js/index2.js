@@ -1,42 +1,48 @@
 let locationInput = "birmingham"
-
+let completeLocationName;
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '7459094a29mshad16f6228de91d6p184fa3jsncd93466b41d1',
-		'X-RapidAPI-Host': 'the-fork-the-spoon.p.rapidapi.com'
-	}
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '7459094a29mshad16f6228de91d6p184fa3jsncd93466b41d1',
+        'X-RapidAPI-Host': 'the-fork-the-spoon.p.rapidapi.com'
+    }
 };
 
-fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
+getGeolocation()
+function getGeolocation () {   
+    // get info on location full address, lat/lon and location id for restaurant search
+    fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
+        .then(response => response.json())
+        .then(completedLocation => {
+            // retrieve autocompleted location id, name & type
+            let locationId = completedLocation.data.geolocation[0].id.id;
+            let geoText = completedLocation.data.geolocation[0].name.text;
+            let locationType = completedLocation.data.geolocation[0].id.type;
+            // convert location text to api format
+            geoText = geoText.replace(/,/g, '%2C');
+            geoText = geoText.replace(/ /g, '%20');
+            return fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/list?google_place_id=${locationId}&geo_ref=false&geo_text=${geoText}&geo_type=${locationType}`, options)
+        })
+
+        .then(response => response.json())
+	    .then(cityGeo => {
+            let lat = cityGeo.coordinates.latitude;
+            let lon = cityGeo.coordinates.longitude;
+            let cityId = cityGeo.id_city;
+            let fullAddress = cityGeo.prediction.address_components;
+            completeLocationName = fullAddress;
+            console.log(fullAddress);
+            return getRestaurants (cityId)
+        })
+        .catch(err => console.error(err));
+}
+
+function getRestaurants (cityId) {
+    // get list of restaurant in nearby
+    fetch(`https://the-fork-the-spoon.p.rapidapi.com/restaurants/v2/list?queryPlaceValueCityId=${cityId}&pageSize=10&pageNumber=1`, options)
 	.then(response => response.json())
-	.then(response => {
-        let locationId = response.data.geolocation[0].id.id;
-        let fullLocation = response.data.geolocation[0].name.text;
-        console.log(locationId)
-        console.log(fullLocation)
-    })
-	.catch(err => console.error(err));
-// const userInputt = "clowne"
-
-// const apiKey = `85ab5ccbe5924069b86a34a443887846`
-
-// //
-// function getLocation(place) {
-//     return fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${place}&type=city&format=json&apiKey=${apiKey}`)
-//         .then(response => response.json())
-//         .then(result => result.results[0].place_id);
-// }
-
-// function getRestaurants(placeId) {
-//     return fetch(`https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=place:${placeId}&limit=20&apiKey=${apiKey}`)
-//         .then(response => response.json())
-//         .then(result => result)
-// }
-
-// getLocation(userInputt).then(placeId => {
-//     getRestaurants(placeId).then(restaurants => {
-//         console.log(restaurants)
-//     })
-// })
-// .features.map(x => x.properties.name).filter(x => x)
+	.then(restaurants => {
+        console.log(restaurants)
+        })
+	.catch(err => console.error(err));  
+}
