@@ -8,7 +8,7 @@ body {
     background-color: var(--main-color);
 }
 
-/* Header Section */
+/* Nav */
 .custom-dropdown {
     z-index: 2;
 }
@@ -27,6 +27,15 @@ body {
 }
 .dropdown-toggle::after {
     display: none;
+}
+.overlay {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 /* Banner */
@@ -76,15 +85,6 @@ footer {
     border: 2px solid;
 }
 
-.overlay {
-    backdrop-filter: blur(6px);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
 
 /* :root {
     --primary-color: #553E4E;

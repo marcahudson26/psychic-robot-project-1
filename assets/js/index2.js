@@ -8,7 +8,7 @@ const options = {
     }
 };
 
-// getGeolocation()
+getGeolocation()
 function getGeolocation () {   
     // get info on location full address, lat/lon and location id for restaurant search
     fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
