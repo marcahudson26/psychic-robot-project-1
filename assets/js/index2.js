@@ -31,7 +31,7 @@ function getGeolocation () {
             let cityId = cityGeo.id_city;
             let fullAddress = cityGeo.prediction.address_components;
             completeLocationName = fullAddress;
-            console.log(fullAddress);
+            // console.log(fullAddress);
             return getRestaurants (cityId)
         })
         .catch(err => console.error(err));
@@ -42,7 +42,21 @@ function getRestaurants (cityId) {
     fetch(`https://the-fork-the-spoon.p.rapidapi.com/restaurants/v2/list?queryPlaceValueCityId=${cityId}&pageSize=10&pageNumber=1`, options)
 	.then(response => response.json())
 	.then(restaurants => {
-        console.log(restaurants)
+        let restaurantsData = restaurants.data
+        return renderNearbyRestaurants (restaurantsData)
         })
 	.catch(err => console.error(err));  
+}
+
+function renderNearbyRestaurants (restaurantsData) {
+    // render restaurant list to page
+    for (let i = 0; i < restaurantsData.length; i++) {
+        const restaurant = restaurantsData[i];
+        console.log(restaurantsData[0])
+        let restaurantBtns = document.createElement("div");
+        restaurantBtns.innerHTML = `
+                                    <button>${restaurant.name}</button>
+                                    `;
+        document.querySelector("#restaurant-container").append(restaurantBtns);
+    }    
 }
