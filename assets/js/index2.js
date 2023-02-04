@@ -1,10 +1,22 @@
-fetch (`https://api.geoapify.com/v1/geocode/search?text=38%20Upper%20Montagu%20Street%2C%20Westminster%20W1H%201LJ%2C%20United%20Kingdom&apiKey=200b90c2ad55452fac862d3c287dd3b2`)
-        .then(response => response.json())
-        .then(cityGeo =>{
-            console.log("geolocation found") ;
-            console.log(cityGeo) ;
-        })
+let locationInput = "birmingham"
 
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '7459094a29mshad16f6228de91d6p184fa3jsncd93466b41d1',
+		'X-RapidAPI-Host': 'the-fork-the-spoon.p.rapidapi.com'
+	}
+};
+
+fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
+	.then(response => response.json())
+	.then(response => {
+        let locationId = response.data.geolocation[0].id.id;
+        let fullLocation = response.data.geolocation[0].name.text;
+        console.log(locationId)
+        console.log(fullLocation)
+    })
+	.catch(err => console.error(err));
 // const userInputt = "clowne"
 
 // const apiKey = `85ab5ccbe5924069b86a34a443887846`
