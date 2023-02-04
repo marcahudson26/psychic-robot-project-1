@@ -1,4 +1,87 @@
 :root {
+    --bs-link-color: black;
+    --main-color: #a17594;
+    --sec-color: #ffcfd2;
+}
+
+body {
+    background-color: var(--main-color);
+}
+
+/* Header Section */
+.dropdown {
+    z-index: 2;
+}
+.dropdown-menu {
+    background-color: white;
+    padding: 5px;
+}
+.dropdown-item {
+    background-color: var(--sec-color);
+}
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Banner */
+.jumbotron-fluid {
+    --bs-border-color: black;
+    --bs-border-width: 5px;
+    background-image: url(../images/banner.webp);
+    background-position: center;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+.container {
+    bottom: 50px;
+}
+.banner {
+    background-color: var(--sec-color);
+    border-radius: 100%;
+    padding: 10px;
+    height: 380px;
+}
+
+header,
+footer {
+    background: var(--bg-color);
+}
+.btn,
+.nav-link {
+    --bs-btn-bg: #ffcfd2;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: #c799b9;
+    --bs-btn-active-bg: #a17594;
+    --bs-btn-color: black;
+
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-hover-bg: #ffcfd2;
+    --bs-btn-hover-border-color: #ffcfd2;
+    --bs-btn-active-border-color: #ffcfd2;
+}
+
+/* Footer */
+.footer-nav {
+    justify-content: space-around;
+}
+
+.custom-nav-item a {
+    background-color: var(--sec-color);
+    border: 2px solid;
+}
+
+.overlay {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/* :root {
     --primary-color: #553E4E;
     --secondary-color: #9EBC9E;
     --tertiaty-color: #FFAFC5;
@@ -12,11 +95,11 @@ html {
 
 body{
     background-color: var(--primary-color);
-    margin: 0 0 20px; /* bottom = footer height*/
+    margin: 0 0 20px; /* bottom = footer height
 }
 
 /* Header Section */
-/* Nav*/
+/* Nav
 .custom-nav{
     background-color: var(--secondary-color);
     height: 4em;
@@ -57,7 +140,7 @@ body{
     background-color: var(--secondary-color);
 }
 
-/* Jumbotron */
+/* Jumbotron 
 .custom-jumbotron{
     background-image: url("");
     background-position: center;
@@ -66,7 +149,7 @@ body{
     
 }
 
-/* Footer */
+/* Footer 
 footer{
     background-color: var(--secondary-color);
     position: absolute;
@@ -90,4 +173,4 @@ footer{
 .custom-footer-btn a:hover {
     color: var(--primary-color);
     text-decoration: none;
-}
+} */
