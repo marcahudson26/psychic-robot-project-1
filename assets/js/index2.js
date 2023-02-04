@@ -1,7 +1,14 @@
-// const userInputt = "clowne"
+// let place = "clowne"
 
-// const apiKey = `85ab5ccbe5924069b86a34a443887846`
-// //
+// const apiKey = "85ab5ccbe5924069b86a34a443887846"
+
+fetch (`https://api.geoapify.com/v1/geocode/search?text=38%20Upper%20Montagu%20Street%2C%20Westminster%20W1H%201LJ%2C%20United%20Kingdom&apiKey=200b90c2ad55452fac862d3c287dd3b2`)
+        .then(response => response.json())
+        .then(cityGeo =>{
+            console.log("geolocation found") ;
+            console.log(cityGeo) ;
+        })
+
 // function getLocation(place) {
 //     return fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${place}&type=city&format=json&apiKey=${apiKey}`)
 //         .then(response => response.json())
