@@ -14,11 +14,26 @@
 
 <body>
     <header>
-        <div>
+        <div class="nav nav-pills custom-nav">
             <!-- Nav Bar goes here -->
+            <nav class="nav-item dropdown custom-nav-item">
+                <a class="nav-link " data-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
+                <div class="dropdown-menu custom-dropdown-menu">
+                    <a class="dropdown-item custom-dropdown-item" href="#">Eat In</a>
+                    <a class="dropdown-item custom-dropdown-item" href="#">Eat Out</a>
+                    <a class="dropdown-item custom-dropdown-item" href="#">Contact</a>
+                    <a class="dropdown-item custom-dropdown-item" href="#">GitHub</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item  cta-dropdown-item" href="#">View History</a>
+                </div>
+            </nav>
         </div>
-        <div>
+        <div class="jumbotron custom-jumbotron">
             <!-- Jumbotron/Banner goes here -->
+                <div class="container">
+                    <!-- Page Heading goes in h1 below -->
+                    <h1>Sample Banner</h1>
+                </div>
         </div>
     </header>
     <main>
@@ -31,6 +46,9 @@
     </main>
     <footer>
          <!-- Footer goes here -->
+         <button type="button" class="btn btn-light custom-footer-btn"><a href="https://sample.com/">Copyright</a></button>
+         <button type="button" class="btn btn-light custom-footer-btn"><a href="https://sample.com/">Github</a></button>
+         <button type="button" class="btn btn-light custom-footer-btn"><a href="https://sample.com/">Contact</a></button>
     </footer>
 
     <!-- JavaScript -->
