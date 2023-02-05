@@ -23,11 +23,6 @@
     --bs-border-width: 5px;
 }
 
-.card {
-    --bs-border-width: 0;
-    --bs-border-radius: 0;
-}
-
 body {
     background-color: var(--main-color);
 }
@@ -37,9 +32,9 @@ body {
 }
 
 .jumbotron-fluid {
-    background-image: url(./assests/meals.webp);
+    background-image: url(./eatin.webp);
     background-position: center;
-    height: 600px;
+    height: 300px;
     background-repeat: no-repeat;
     background-size: cover
 }
@@ -52,27 +47,11 @@ body {
 }
 
 .card {
-    background-color: black;
+    background-color: #ffcfd2;
     padding: 5px;
     min-height: 400px;
-}
-
-.card .btn {
-    border-radius: 50%;
-}
-
-#one {
-    background-image: url(./assests/eatin.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover
-}
-
-#two {
-    background-position: center;
-    background-image: url(./assests/eatout.webp);
-    background-repeat: no-repeat;
-    background-size: cover
+    border-color: rgb(55, 27, 27);
+    border-width: 5px;
 }
 
 header,
