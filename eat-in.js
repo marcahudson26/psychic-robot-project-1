@@ -1,11 +1,16 @@
-function fetchData() {
+document.getElementById("submit").addEventListener("click", function () {
 
-    const meal = document.getElementById("meal").value;
+    console.log("this worked!");
+
+let meal = document.getElementById("meal").value;
+let queryURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + meal;
+
 
 // this gets the ingredients
-fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
+fetch(queryURL)
     .then(response => response.json())
     .then(response => {
+
 
         if (!response.meals) {
             // if there is no data throw an error
@@ -41,10 +46,12 @@ fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
         document.getElementById("ingredients").innerHTML = recipeIngredents;
         console.log(recipeIngredents)
         //cooking instructions
+        document.getElementById("instructions").innerHTML = response.meals[0].strInstructions;
         console.log(response.meals[0].strInstructions)
         //for the the thumbnail image
         console.log(response.meals[0].strMealThumb)
         // for the u tube video link
+        document.getElementById("youtube").innerHTML = response.meals[0].strYoutube;
         console.log(response.meals[0].strYoutube)
         console.log(ingredients)
     })
@@ -88,4 +95,4 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${userInput}`, optio
         //link to cooking istructions
         console.log(response.hits[3].recipe.url)
     })
-}
+});
