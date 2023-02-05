@@ -1,7 +1,9 @@
-let userInput = "sushi"
+function fetchData() {
+
+    const meal = document.getElementById("meal").value;
 
 // this gets the ingredients
-fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
+fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
     .then(response => response.json())
     .then(response => {
 
@@ -33,8 +35,10 @@ fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
             recipeIngredents.push(`${measurement} ${ingredent}`)
         }
         //for the meal name
+        document.getElementById("name").innerHTML = response.meals[0].strMeal;
         console.log(response.meals[0].strMeal)
         //this gets the ingredents
+        document.getElementById("ingredients").innerHTML = recipeIngredents;
         console.log(recipeIngredents)
         //cooking instructions
         console.log(response.meals[0].strInstructions)
@@ -84,3 +88,4 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${userInput}`, optio
         //link to cooking istructions
         console.log(response.hits[3].recipe.url)
     })
+}
