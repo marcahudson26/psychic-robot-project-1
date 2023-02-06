@@ -1,5 +1,5 @@
-document.getElementById("submit").addEventListener("click", function () {
-
+document.getElementById("submit").addEventListener("click", function (event) {
+    event.preventDefault();
     console.log("this worked!");
 
 let meal = document.getElementById("meal").value;
