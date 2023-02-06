@@ -54,6 +54,23 @@ body {
     border-width: 5px;
 }
 
+.form-label {
+    color: black
+}
+
+#meal {
+    color: black;
+    background-color:white;
+}
+
+#submit {
+    border-radius: 10px;
+    background-color: #cc7076;
+}
+
+#name, #ingredients, #instructions, #youtube {
+    color: whitesmoke;
+}
 .inner-card {
     background-color: #cc7076;
     padding: 5px;

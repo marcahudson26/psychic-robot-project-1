@@ -5,7 +5,6 @@ document.getElementById("submit").addEventListener("click", function (event) {
 let meal = document.getElementById("meal").value;
 let queryURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + meal;
 
-
 // this gets the ingredients
 fetch(queryURL)
     .then(response => response.json())
