@@ -32,41 +32,37 @@ fetch(queryURL)
                 }
             }
         }
-        const recipeIngredents = []
+        const recipeIngriedents = []
         for (let i = 0; i < ingredients.length; i++) {
             const ingredent = ingredients[i];
             const measurement = measurements[i]
-            recipeIngredents.push(`${measurement} ${ingredent}`)
+            recipeIngriedents.push(`${measurement} ${ingredent}`)
         }
 
         //for the meal name
         document.getElementById("name").innerHTML = "name";
-        document.getElementById("name").innerHTML += ':' + response.meals[0].strMeal;
+        document.getElementById("name").innerHTML += ':' + ' ' + response.meals[0].strMeal;
         console.log(response.meals[0].strMeal)
-        //this gets the ingredents
-        document.getElementById("ingredients").innerHTML = "ingredients";
-        document.getElementById("ingredients").innerHTML += ':' + recipeIngredents;
-        console.log(recipeIngredents)
-        //cooking instructions
-        document.getElementById("instructions").innerHTML = "instructions";
-        document.getElementById("instructions").innerHTML += ':' +response.meals[0].strInstructions;
-        console.log(response.meals[0].strInstructions)
         //for the the thumbnail image
         console.log(response.meals[0].strMealThumb)
-        // for the u tube video link
+        //this gets the ingriedents
+        document.getElementById("ingredients").innerHTML = "ingredients";
+        document.getElementById("ingredients").innerHTML += ':' + ' ' + recipeIngriedents;
+        console.log(recipeIngriedents)
+        //cooking instructions
+        document.getElementById("instructions").innerHTML = "instructions";
+        document.getElementById("instructions").innerHTML += ':' + ' ' + response.meals[0].strInstructions;
+        console.log(response.meals[0].strInstructions)
+        // for the youtube video link
         document.getElementById("youtube").innerHTML = "youtube";
-        document.getElementById("youtube").innerHTML += ':' +response.meals[0].strYoutube;
+        document.getElementById("youtube").innerHTML += ':' + ' ' + response.meals[0].strYoutube;
         console.log(response.meals[0].strYoutube)
-        console.log(ingredients)
     })
 
     .catch(() => {
         // if there is an error render some error message
         console.log("There was an error")
     })
-
-
-userInput = "burger"
 
 const options = {
     method: 'GET',
@@ -75,8 +71,10 @@ const options = {
         'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com'
     }
 };
+
+
 //fetch request with loop to pull put the ingredients and push into the ingredients array
-fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${userInput}`, options)
+fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${meal}`, options)
     .then(response => response.json())
     .then(response => {
         ingredients = []
