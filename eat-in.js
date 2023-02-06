@@ -38,19 +38,24 @@ fetch(queryURL)
             const measurement = measurements[i]
             recipeIngredents.push(`${measurement} ${ingredent}`)
         }
+
         //for the meal name
-        document.getElementById("name").innerHTML = response.meals[0].strMeal;
+        document.getElementById("name").innerHTML = "name";
+        document.getElementById("name").innerHTML += ':' + response.meals[0].strMeal;
         console.log(response.meals[0].strMeal)
         //this gets the ingredents
-        document.getElementById("ingredients").innerHTML = recipeIngredents;
+        document.getElementById("ingredients").innerHTML = "ingredients";
+        document.getElementById("ingredients").innerHTML += ':' + recipeIngredents;
         console.log(recipeIngredents)
         //cooking instructions
-        document.getElementById("instructions").innerHTML = response.meals[0].strInstructions;
+        document.getElementById("instructions").innerHTML = "instructions";
+        document.getElementById("instructions").innerHTML += ':' +response.meals[0].strInstructions;
         console.log(response.meals[0].strInstructions)
         //for the the thumbnail image
         console.log(response.meals[0].strMealThumb)
         // for the u tube video link
-        document.getElementById("youtube").innerHTML = response.meals[0].strYoutube;
+        document.getElementById("youtube").innerHTML = "youtube";
+        document.getElementById("youtube").innerHTML += ':' +response.meals[0].strYoutube;
         console.log(response.meals[0].strYoutube)
         console.log(ingredients)
     })
