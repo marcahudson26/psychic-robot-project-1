@@ -50,7 +50,10 @@
             input {
                 padding: 7px;
                 height: 40px;
-            
+            }
+
+            fieldset {
+                margin-bottom: 20px;
             }
 
         </style>
@@ -80,10 +83,18 @@
                 <legend>History List</legend>
                     <input id="inputKey" type="text" placeholder= "Add Restaurants...">
                     <input id="inputValue" type="text" placeholder="Add Recipes...">
+                    <button type="button" id="btnInsert">Save to Favourites</button>
 
-    </fieldset>
+                </fieldset>
+                <!--local storage output-->
+                <fieldset>
+                <legend>Local Storage</legend>
 
-        </div>
+                <div class="Output">
+                
+                </fieldset>
+
+    </div>
     </main>
     <!-- Footer  -->
     <footer class="mb-3 mt-3 footer">
@@ -121,12 +132,19 @@
     </script>
 
     <script type="text/javascript">
-        localStorage.setItem("recipe", "restaurant")
+        // localStorage.setItem("recipe", "restaurant")
 
-        localStorage.setItem("")
+        // localStorage.setItem("")
         
         // console.log(localStorage);
-        
+
+        const inputKey = document.getElementById("inputKey");
+
+        const inputValue = document.getElementById("inputValue");
+
+        const btnInsert = document.getElementById("btnInsert");
+
+        const Output = document.getElementById("Output");
 
     </script>
     
