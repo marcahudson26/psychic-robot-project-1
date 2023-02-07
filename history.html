@@ -45,6 +45,18 @@
         </div>
     </div>
     <main>
+        <!--Style for text input boxes-->
+        <style storage="box">
+            input {
+                padding: 7px;
+                height: 40px;
+            
+            }
+
+        </style>
+
+
+
         <div>
             <!-- Meal History -->
         </div>
@@ -60,8 +72,16 @@
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </div>
+<!-- 
+              <button type="button" class="btn btn-primary" id="myButton">Click me</button> -->
 
+                <!--local storage-->
+            <fieldset>
+                <legend>History List</legend>
+                    <input id="inputKey" type="text" placeholder= "Add Restaurants...">
+                    <input id="inputValue" type="text" placeholder="Add Recipes...">
 
+    </fieldset>
 
         </div>
     </main>
@@ -91,7 +111,25 @@
     <!-- JavaScript -->
     <script src="./assets/js/history.js"></script>
 
+  
 
+    <script>
+      document.getElementById("myButton").addEventListener("click", function() {
+        alert("Button was clicked!");
+      });
+
+    </script>
+
+    <script type="text/javascript">
+        localStorage.setItem("recipe", "restaurant")
+
+        localStorage.setItem("")
+        
+        // console.log(localStorage);
+        
+
+    </script>
+    
 
 </body>
 </html>
