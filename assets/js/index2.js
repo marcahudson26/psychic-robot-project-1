@@ -1,4 +1,4 @@
-let locationInput = "birmingham"
+let locationInput;
 let completeLocationName;
 const options = {
     method: 'GET',
@@ -8,7 +8,31 @@ const options = {
     }
 };
 
-getGeolocation()
+renderSearchCityForm ();
+function renderSearchCityForm () {
+    let searchForm = document.createElement("form");
+    searchForm.innerHTML = `
+                            <div class="mb-3">
+                                <label for="inputCity" class="form-label">WHAT CITY WOULD YOU LIKE TO SEARCH?</label>
+                                <input type="email" class="form-control" id="inputCity" aria-describedby="inputCityHelp" placeholder="London, York, Birmigham...">
+                                <div id="inputCityHelp" class="form-text">Please enter your city name.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id = "find-restaurants">Submit</button>
+                            `;
+        document.querySelector("#search-city").append(searchForm);
+}
+
+function findRestaurant (event) {
+    // Prevent searh form default to save form input
+    event.preventDefault();
+
+    // Store search input value (i.e, name of city)
+    locationInput = document.querySelector("#inputCity").value
+    console.log(locationInput)
+    getGeolocation();
+}
+
+
 function getGeolocation () {   
     // get info on location full address, lat/lon and location id for restaurant search
     fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
@@ -60,3 +84,6 @@ function renderNearbyRestaurants (restaurantsData) {
         document.querySelector("#restaurant-container").append(restaurantBtns);
     }    
 }
+
+// Event listener for the button to get restaurants available in city
+document.querySelector("#find-restaurants").addEventListener("click", findRestaurant);
