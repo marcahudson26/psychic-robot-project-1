@@ -85,5 +85,13 @@ function renderNearbyRestaurants (restaurantsData) {
     }    
 }
 
+// blur screen on nav-bar 
+$('.dropdown').on('show.bs.dropdown', function () {
+    document.querySelector(".overlay").classList.remove("d-none")
+})
+$('.dropdown').on('hide.bs.dropdown', function () {
+    document.querySelector(".overlay").classList.add("d-none")
+})
+
 // Event listener for the button to get restaurants available in city
 document.querySelector("#find-restaurants").addEventListener("click", findRestaurant);
