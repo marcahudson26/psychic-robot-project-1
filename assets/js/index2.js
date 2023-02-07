@@ -76,7 +76,7 @@ function renderNearbyRestaurants (restaurantsData) {
     // render restaurant list to page
     for (let i = 0; i < restaurantsData.length; i++) {
         const restaurant = restaurantsData[i];
-        console.log(restaurantsData[0])
+        console.log(restaurantsData[i])
         let restaurantBtns = document.createElement("div");
         restaurantBtns.innerHTML = `
                                     <button>${restaurant.name}</button>
