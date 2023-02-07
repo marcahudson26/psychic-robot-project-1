@@ -1,3 +1,13 @@
+//TO DO 
+// history bar with local storage 
+//fix styling issues
+//hook up to rest of page 
+// toggle bar in top right corner not working? 
+
+
+
+
+
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
     console.log("this worked!");
