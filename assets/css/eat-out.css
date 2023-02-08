@@ -106,6 +106,16 @@ form{
     border: 5px solid black;
     padding: 10px;
 }
+#restaurantDiv{
+    justify-content: center;
+}
+#fav-btn{
+    background-color: var(--main-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 5rem;
+    border-radius: 0.375rem;
+}
 .restaurant-button{
     background-color: var(--sec-color);
     margin-top: 10px;

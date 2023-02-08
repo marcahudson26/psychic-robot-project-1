@@ -1,5 +1,6 @@
 let locationInput;
 let searchedCities = [];
+let favRestaurants = [];
 let completeLocationName;
 const options = {
     method: 'GET',
@@ -95,7 +96,7 @@ function getGeolocation () {
         let cityId = cityGeo.id_city;
         let fullAddress = cityGeo.prediction.address_components;
         completeLocationName = fullAddress;
-        // console.log(fullAddress);
+        console.log(fullAddress);
         return getRestaurants (cityId)
     })
     .catch(err => console.error(err));
@@ -119,17 +120,22 @@ function renderNearbyRestaurants (restaurantsData) {
     document.querySelector("#restaurant-container").textContent = "";
     // Display styles for restaurants container (i.e., change style from display none to block)
     document.getElementById("restaurant-container").style.display = "block"
+    // document.querySelector("#complete-input-city").textContent = completeLocationName
     // render restaurant list to page
     for (let i = 0; i < restaurantsData.length; i++) {
         const restaurant = restaurantsData[i];
-        console.log(restaurantsData[0])
+        console.log(restaurantsData[i])
         let restaurantBtns = document.createElement("div");
         restaurantBtns.setAttribute("id", "restaurantDiv")
+        restaurantBtns.setAttribute("class", "row")
         restaurantBtns.innerHTML = `
-                                    <button class="restaurant-button col-lg-12">${restaurant.name}</button>
+                                    <button class="restaurant-button col-lg-9" id= "${restaurant.id}">${restaurant.name}</button>
+                                    <button class="col-lg-2" id = "fav-btn">add to fav</button>
                                     `;
         document.querySelector("#restaurant-container").append(restaurantBtns);
-    }    
+    }   
+    // Event listener to store favorite restaurants in search history 
+    document.querySelector("#restaurant-container").addEventListener("click", addFavorite); 
     // Display updated search history on page
     renderSearchHistory();
 }
@@ -168,6 +174,17 @@ function renderRestaurantFromHistory(event) {
     }
 }
 
+function addFavorite(event) {
+    if (event.target.matches("#fav-btn")){
+        // Restaurant name/id
+        let restaurantName =(event.target).previousElementSibling.textContent;
+        // store restaurant name 
+        favRestaurants.push(restaurantName);
+        localStorage.setItem("favRestaurants", JSON.stringify(favRestaurants));
+        console.log(restaurantName);
+    }
+}
+
 // blur screen on nav-bar click
 $('.dropdown').on('show.bs.dropdown', function () {
     document.querySelector(".overlay").classList.remove("d-none")
@@ -175,6 +192,7 @@ $('.dropdown').on('show.bs.dropdown', function () {
 $('.dropdown').on('hide.bs.dropdown', function () {
     document.querySelector(".overlay").classList.add("d-none")
 })
+
 
 // Event listener for buttons in search history to get restaurant info
 document.querySelector("#search-history").addEventListener("click", renderRestaurantFromHistory);
