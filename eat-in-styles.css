@@ -58,6 +58,13 @@ body {
     color: black
 }
 
+#meal-list {
+    font-size: x-large;
+    color: palevioletred;
+
+}
+
+
 #meal {
     color: black;
     background-color:white;
@@ -71,6 +78,7 @@ body {
 #name, #ingredients, #instructions, #youtube {
     color: whitesmoke;
 }
+
 .inner-card {
     background-color: #cc7076;
     padding: 5px;
