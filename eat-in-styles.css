@@ -58,6 +58,12 @@ body {
     color: black
 }
 
+#meal-list {
+    font-size: x-large;
+    color: palevioletred;
+
+}
+
 
 #meal {
     color: black;

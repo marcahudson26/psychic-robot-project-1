@@ -4,9 +4,13 @@
 //hook up to rest of page 
 // toggle bar in top right corner not working? 
 
+let mealList = document.querySelector('#meal-list');
 
-
-
+window.addEventListener("load", function () {
+    let savedMeals = localStorage.getItem("meal");
+    if (savedMeals) {
+      mealList.innerHTML = savedMeals;
+}
 
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
@@ -67,8 +71,7 @@ fetch(queryURL)
         document.getElementById("youtube").innerHTML += ':' + ' ' + response.meals[0].strYoutube;
         console.log(response.meals[0].strYoutube)
 
-        
-        // console.log(meal.strMeal)
+        console.log(meal.strMeal)
         localStorage.setItem("meal", meal.strMeal);
         let meals = localStorage.getItem("meal");
 
@@ -118,4 +121,5 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${meal}`, options)
         //link to cooking istructions
         console.log(response.hits[3].recipe.url)
     })
+})
 })
