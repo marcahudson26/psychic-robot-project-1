@@ -49,10 +49,8 @@ function findRestaurant (event) {
     }
     storeSearchedCity();
     // find restaurants available for inputted city
-    // getGeolocation();
+    getGeolocation();
 }
-
-
 
 // Function to store searched cities to local storage
 function storeSearchedCity (){
@@ -60,7 +58,11 @@ function storeSearchedCity (){
     if (isSearchHistory) {
         // If there is search hitory update searched cities array
         searchedCities = JSON.parse(localStorage.getItem("searchHistory")); 
-    } 
+    }
+    else if (searchedCities === null) {
+        // If there is no search history reset class from null to array
+        searchedCities = []; 
+    }  
     searchedCities.push(locationInput);
     // Reverse searched cities array and remove duplicates
     searchedCities = [...new Set(searchedCities.reverse())];
@@ -68,30 +70,7 @@ function storeSearchedCity (){
     localStorage.setItem("searchHistory", JSON.stringify(searchedCities.reverse()));
     // Clear search input value
     document.querySelector("#inputCity").value = "";
-    // Display updated search history on page
-    renderSearchHistory();
 }
-
-// Function to render search history 
-function renderSearchHistory() {
-    // Reset History Section display content
-    document.querySelector("#search-history").textContent = "";
-    searchedCities = JSON.parse(localStorage.getItem("searchHistory"));
-    for (let i = 0; i < searchedCities.length; i++) {
-        const city = searchedCities[i];
-        // Generate search history buttons: create/set content and prepend buttons to search form
-        let cityBtns = document.createElement("div");
-        cityBtns.innerHTML = `
-                                    <button class="btn city-button col-lg-12" id = "${city}-button">${capitalizeFirstLetter(city)}</button>
-                                    `;
-        document.querySelector("#search-history").prepend(cityBtns);
-    }   
-}
-                        
-// Function to capitalize the first letter of cities displayed in search history
-function capitalizeFirstLetter(city) {
-    return city.charAt(0).toUpperCase() + city.slice(1);
-} 
 
 // Function to find lon, lat and city id for searched city
 function getGeolocation () {   
@@ -151,7 +130,33 @@ function renderNearbyRestaurants (restaurantsData) {
                                     `;
         document.querySelector("#restaurant-container").append(restaurantBtns);
     }    
+    // Display updated search history on page
+    renderSearchHistory();
 }
+
+
+// Function to render search history 
+function renderSearchHistory() {
+    // Reset History Section display content
+    document.querySelector("#search-history").textContent = "";
+    searchedCities = JSON.parse(localStorage.getItem("searchHistory"));
+    if (searchedCities !== null) {
+        for (let i = 0; i < searchedCities.length; i++) {
+            const city = searchedCities[i];
+            // Generate search history buttons: create/set content and prepend buttons to search form
+            let cityBtns = document.createElement("div");
+            cityBtns.innerHTML = `
+                                        <button class="btn city-button col-lg-12" id = "${city}-button">${capitalizeFirstLetter(city)}</button>
+                                        `;
+            document.querySelector("#search-history").prepend(cityBtns);
+        } 
+    }    
+}
+                        
+// Function to capitalize the first letter of cities displayed in search history
+function capitalizeFirstLetter(city) {
+    return city.charAt(0).toUpperCase() + city.slice(1);
+} 
 
 // Function to display restaurants from click of button in search history
 function renderRestaurantFromHistory(event) {
