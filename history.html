@@ -106,18 +106,25 @@
 
             <!--Favs tick box-->
 
-            <!-- <label for="id-of-input" class="custom-checkbox">
-  <input type="checkbox" id="id-of-input"/>
-  <i class="glyphicon glyphicon-star-empty"></i>
-  <i class="glyphicon glyphicon-star"></i>
-  <span>Favorite</span>
-</label> -->
+            <label for="id-of-input" class="custom-checkbox">
+                <input type="checkbox" id="id-of-input" />
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <i class="glyphicon glyphicon-star"></i>
+                <span>Favorite</span>
+            </label>
+
+
 
             <!--Fav tick box section-->
             <input type="checkbox" id="fav-item-1">
             <label for="fav-item-1">Add to favorites</label>
 
-            <ul id="favorites-list"></ul>
+            <ul id="favorites-list">
+                <li>chicken stew</li>
+                <li>soup</li>
+                <li>apple pie</li>
+                <li>how do I get this to function the way I want without conflict of code??</li>
+            </ul>
 
 
             <!--Fav tick box above-->
@@ -198,10 +205,7 @@
 
                 localStorage.setItem
 
-
                 location.reload();
-
-
 
             }
 
@@ -225,7 +229,7 @@
     <!--fav tick box feature JavaScript-->
 
     <script>
-    //This part of the code is a checkbox and it will run some JavaScript code to store information locally. 
+        //This part of the code is a checkbox and it will run some JavaScript code to store information locally. 
         const checkbox = document.querySelector('#fav-item-1');
 
         checkbox.addEventListener('change', function () {
