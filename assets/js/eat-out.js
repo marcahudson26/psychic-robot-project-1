@@ -9,11 +9,18 @@ const options = {
     }
 };
 
-renderSearchCityForm ();
+init ()
+function init (){
+    // Display form to search for restaurants by city
+    renderSearchCityForm ();
+    // Display search history on page
+    renderSearchHistory();
+}
+
 // Function to render form to search city for restaurants available
 function renderSearchCityForm () {
     let searchForm = document.createElement("form");
-    searchForm.setAttribute("class", "col-lg-12 text-center");
+    searchForm.setAttribute("class", "search-form col-lg-12 text-center");
     searchForm.innerHTML = `
     <div class="mb-3">
     <label for="inputCity" class="form-label fs-1 fw-bold text-center">WHAT CITY WOULD YOU LIKE TO SEARCH?</label>
@@ -22,43 +29,59 @@ function renderSearchCityForm () {
     </div>
     <button type="submit" class="btn btn-primary search-city-btn" id = "find-restaurants">Submit</button>
     `;
-    document.querySelector("#search-city").append(searchForm);
+    document.querySelector("#city-input").append(searchForm);
 }
 
 // Function to handle click on button to find restaurants in city
 function findRestaurant (event) {
     // Prevent searh form default to save form input
     event.preventDefault();
-    
     // Store search input value (i.e, name of city)
     locationInput = document.querySelector("#inputCity").value
-    console.log(locationInput)
     storeSearchedCity();
+    // find restaurants available for inputted city
+    getGeolocation();
 }
 
 // Function to store searched cities to local storage
 function storeSearchedCity (){
     isSearchHistory = localStorage.getItem("searchHistory")
     if (isSearchHistory) {
-        // If there is no search history reset class from null to array
+        // If there is search hitory update searched cities array
         searchedCities = JSON.parse(localStorage.getItem("searchHistory")); 
     } 
     searchedCities.push(locationInput);
-    console.log(locationInput)
-    console.log(searchedCities)
     // Reverse searched cities array and remove duplicates
     searchedCities = [...new Set(searchedCities.reverse())];
     // Store reveresed array in search history local storage 
     localStorage.setItem("searchHistory", JSON.stringify(searchedCities.reverse()));
-    
-    
-    console.log(localStorage)
-
     // Clear search input value
     document.querySelector("#inputCity").value = "";
+    // Display updated search history on page
+    renderSearchHistory();
+}
+
+// Function to render search history 
+function renderSearchHistory() {
+    // Reset History Section display content
+    document.querySelector("#search-history").textContent = "";
+    searchedCities = JSON.parse(localStorage.getItem("searchHistory"));
+    for (let i = 0; i < searchedCities.length; i++) {
+        const city = searchedCities[i];
+        // Generate search history buttons: create/set content and prepend buttons to search form
+        let cityBtns = document.createElement("div");
+        cityBtns.innerHTML = `
+                                    <button class="btn city-button col-lg-12" id = "${city}-button">${capitalizeFirstLetter(city)}</button>
+                                    `;
+        document.querySelector("#search-history").prepend(cityBtns);
+    }   
 }
                         
-                        
+// Function to capitalize the first letter of cities displayed in search history
+function capitalizeFirstLetter(city) {
+    return city.charAt(0).toUpperCase() + city.slice(1);
+} 
+
 // Function to find lon, lat and city id for searched city
 function getGeolocation () {   
     // get info on location full address, lat/lon and location id for restaurant search
@@ -102,13 +125,18 @@ function getRestaurants (cityId) {
 
 // Function to display restaurants found for searched city
 function renderNearbyRestaurants (restaurantsData) {
+    // Reset content for restaurants container
+    document.querySelector("#restaurant-container").textContent = "";
+    // Display styles for restaurants container (i.e., change style from display none to block)
+    document.getElementById("restaurant-container").style.display = "block"
     // render restaurant list to page
     for (let i = 0; i < restaurantsData.length; i++) {
         const restaurant = restaurantsData[i];
         console.log(restaurantsData[0])
         let restaurantBtns = document.createElement("div");
+        restaurantBtns.setAttribute("id", "restaurantDiv")
         restaurantBtns.innerHTML = `
-                                    <button>${restaurant.name}</button>
+                                    <button class="restaurant-button col-lg-12">${restaurant.name}</button>
                                     `;
         document.querySelector("#restaurant-container").append(restaurantBtns);
     }    

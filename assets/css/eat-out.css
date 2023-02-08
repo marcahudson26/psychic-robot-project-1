@@ -93,6 +93,30 @@ form{
     background-color: var(--main-color);
     margin: 5px;
 }
+/* Search history */
+#search-history{
+    margin: 10px;
+}
+.city-button{
+    margin-top: 5px;
+    height: 3rem;
+}
+/* Restaurants */
+#restaurant-container {
+    border: 5px solid black;
+    padding: 10px;
+}
+.restaurant-button{
+    background-color: var(--sec-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 5rem;
+    border-radius: 0.375rem;
+}
+.hide {
+    display: none;
+}
+
 
 /* Footer */
 .footer-nav {
