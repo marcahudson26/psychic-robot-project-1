@@ -86,7 +86,19 @@ footer {
 }
 
 
+#favRestaurants {
 
+    background-color: var(--main-color);
+    border: 5px solid black;
+    padding: 10px;
+    margin: 15px;
+}
+
+.restaurant-btn{
+    background-color: var(--sec-color);
+    margin-top: 10px;
+    font-size: 2.5rem;
+}
 
 /* Marc's Code */
 /* :root {

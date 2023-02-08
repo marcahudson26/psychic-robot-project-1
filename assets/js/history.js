@@ -16,7 +16,7 @@ function displayRestaurant () {
         // create/set content/append
         let restaurantDiv = document.createElement("div")
         restaurantDiv.innerHTML = `
-                                    <button class="restaurant-btn">${restaurant}</button>
+                                    <button class="col-lg-12 restaurant-btn">${restaurant}</button>
                                     `
         favRestaurantsDiv.append(restaurantDiv);
     }
