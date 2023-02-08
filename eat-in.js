@@ -10,7 +10,6 @@
 
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
-    console.log("this worked!");
 
 let meal = document.getElementById("meal").value;
 let queryURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + meal;
@@ -50,30 +49,42 @@ fetch(queryURL)
         }
 
         //for the meal name
-        document.getElementById("name").innerHTML = "name";
+        document.getElementById("name").innerHTML = "NAME";
         document.getElementById("name").innerHTML += ':' + ' ' + response.meals[0].strMeal;
         console.log(response.meals[0].strMeal)
         //for the the thumbnail image
         console.log(response.meals[0].strMealThumb)
         //this gets the ingriedents
-        document.getElementById("ingredients").innerHTML = "ingredients";
+        document.getElementById("ingredients").innerHTML = "INGREDIENTS";
         document.getElementById("ingredients").innerHTML += ':' + ' ' + recipeIngriedents;
         console.log(recipeIngriedents)
         //cooking instructions
-        document.getElementById("instructions").innerHTML = "instructions";
+        document.getElementById("instructions").innerHTML = "INSTRUCTIONS";
         document.getElementById("instructions").innerHTML += ':' + ' ' + response.meals[0].strInstructions;
         console.log(response.meals[0].strInstructions)
         // for the youtube video link
-        document.getElementById("youtube").innerHTML = "youtube";
+        document.getElementById("youtube").innerHTML = "YOUTUBE";
         document.getElementById("youtube").innerHTML += ':' + ' ' + response.meals[0].strYoutube;
         console.log(response.meals[0].strYoutube)
+
+        
+        // console.log(meal.strMeal)
+        localStorage.setItem("meal", meal.strMeal);
+        let meals = localStorage.getItem("meal");
+
+        // Create a new list item for each saved search input
+        let mealList = document.createElement("li");
+        mealList.innerHTML = meals;
+    
+        // Append the new list item to the list under the form
+        let list = document.getElementById("meal-list");
+        list.appendChild(mealList);
     })
 
     .catch(() => {
         // if there is an error render some error message
         console.log("There was an error")
     })
-
 const options = {
     method: 'GET',
     headers: {
@@ -107,4 +118,4 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${meal}`, options)
         //link to cooking istructions
         console.log(response.hits[3].recipe.url)
     })
-});
+})
