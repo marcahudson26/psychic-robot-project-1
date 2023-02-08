@@ -24,7 +24,7 @@ function renderSearchCityForm () {
     searchForm.innerHTML = `
     <div class="mb-3">
     <label for="inputCity" class="form-label fs-1 fw-bold text-center">WHAT CITY WOULD YOU LIKE TO SEARCH?</label>
-    <input type="email" class="form-control" id="inputCity" aria-describedby="inputCityHelp" placeholder="London, York, Birmigham...">
+    <input type="text" class="form-control" id="inputCity" aria-describedby="inputCityHelp" placeholder="London, York, Birmigham...">
     <div id="inputCityHelp" class="form-text">Please enter your city name.</div>
     </div>
     <button type="submit" class="btn btn-primary search-city-btn" id = "find-restaurants">Submit</button>
@@ -38,10 +38,21 @@ function findRestaurant (event) {
     event.preventDefault();
     // Store search input value (i.e, name of city)
     locationInput = document.querySelector("#inputCity").value
+    if (locationInput ==="") {
+        document.querySelector("#find-restaurants").setAttribute("data-bs-toggle", "modal");
+        document.querySelector("#find-restaurants").setAttribute("data-bs-target", "#exampleModal");
+        
+        // if no city is entered
+        
+        alert("Please enter valid City")
+        return;
+    }
     storeSearchedCity();
     // find restaurants available for inputted city
-    getGeolocation();
+    // getGeolocation();
 }
+
+
 
 // Function to store searched cities to local storage
 function storeSearchedCity (){
@@ -142,6 +153,16 @@ function renderNearbyRestaurants (restaurantsData) {
     }    
 }
 
+// Function to display restaurants from click of button in search history
+function renderRestaurantFromHistory(event) {
+    if (event.target.matches("button")) {
+        // Set default for displaying weather info to London
+        locationInput = event.target.textContent;
+        // find restaurants available for inputted city
+        getGeolocation();   
+    }
+}
+
 // blur screen on nav-bar click
 $('.dropdown').on('show.bs.dropdown', function () {
     document.querySelector(".overlay").classList.remove("d-none")
@@ -150,6 +171,8 @@ $('.dropdown').on('hide.bs.dropdown', function () {
     document.querySelector(".overlay").classList.add("d-none")
 })
 
+// Event listener for buttons in search history to get restaurant info
+document.querySelector("#search-history").addEventListener("click", renderRestaurantFromHistory);
 // Event listener for the button to get restaurants available in city
 document.querySelector("#find-restaurants").addEventListener("click", findRestaurant);
 
