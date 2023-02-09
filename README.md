@@ -1,17 +1,35 @@
-# Psychic-Robot-Project-1
-
+># Psychic-Robot-Project-1
 
 # Our Group Task
 
+## Table of Contents
+
+* [Project Description](#project-description)
+* [User Story](#user-story)
+* [Acceptance Criteria](#acceptance-criteria)
+* [Mandatory Requirements](#mandatory-requirements)
+* [Endpoint Requirements](#endpoint-requirements)
+* [Data Requirements](#data-requirements)
+* [Security Requirements](#security-requirements)
+* [Performance Requirements](#performance-requirements)
+* [Documentation Requirements](#documentation-requirements)
+* [Testing Requirements](#documentation-requirements)
+* [Evidence Requirements](#evidence-requirements)
+* [Screenshots](#screenshots)
+* [Deployment](#deployment-link)
+* [License](#license)
+
 ## Project Description
-Our Group Project task is to build a web application that uses at least two server-side APIs, is styled with a CSS framework like Bootstrap, is deployed on GitHub Pages, is interactive with modals instead of alerts, uses client-side storage for persistent data, is responsive, has a polished user interface, has a clean code repository with good coding standards, and has a quality README with a unique name, description, technologies used, screenshot, and link to the deployed application.
+>Our Group Project task is to build a web application that uses at least two server-side APIs, is styled with a CSS framework like Bootstrap, is deployed on GitHub Pages, is interactive with modals instead of alerts, uses client-side storage for persistent data, is responsive, has a polished user interface, has a clean code repository with good coding standards, and has a quality README with a unique name, description, technologies used, screenshot, and link to the deployed application.
 
+#
 
-## Introduction
+>## User Story
 A foodie app that provides information for cooking your own meals or ordering from your favourite restaurant. Choose between eating in or eating out, and get the information you need to enjoy your meal.
 
-## Eating In
-As a foodie, you want to cook your own meals in the comfort of your own home. You need information about the food you want to prepare, including:
+
+### Eating In
+>As a foodie, you want to cook your own meals in the comfort of your own home. You need information about the food you want to prepare, including:
 - Food item names
 - Descriptions
 - Recipes
@@ -20,22 +38,25 @@ As a foodie, you want to cook your own meals in the comfort of your own home. Yo
 - Instructions
 - Video links
 
-## Eating Out
-You also want to be able to order from your favourite restaurant. You need the ability to search for a restaurant using your own postcode or city name. The search should provide you with the following information:
+### Eating Out
+>As a foodie, you also want to be able to order from your favourite restaurant. You need the ability to search for a restaurant using your own postcode or city name. The search should provide you with the following information:
 - Location on the map
 - City name
 - Restaurant's name, address, and postcode
 - Restaurant menu and website URL
 
-## Target Audience
+
+
+### Target Audience
 Foodies who want to choose between eating in or eating out, and expect a set of desired outcomes based on their choice.
 
-## Development Team
+### Development Team
 This README provides more context and helps to prioritize features that are most important for the user.
 
+#
 
-
-## Acceptance Criteria
+>## Acceptance Criteria
+#
 ### Mandatory Requirements
 - Use at least two server-side APIs.
 - Use Bootstrap or some other CSS framework.
@@ -82,13 +103,12 @@ This README provides more context and helps to prioritize features that are most
 
 ### Evidence Requirements
 - Organized README document with "Unique Name, Description, Technologies used, Screenshots, and Link to deployed Application".
+#
+>### Screenshots:
 
-### Screenshots, here:
+#
 
-
-
-
-### Deployment Link, here:
+>### Deployment Link:
 
 ##
 
