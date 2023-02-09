@@ -37,7 +37,7 @@ body {
 }
 
 .jumbotron-fluid {
-    background-image: url(./assests/meals.webp);
+    background-image: url(./assets/images/meals.webp);
     background-position: center;
     height: 600px;
     background-repeat: no-repeat;
@@ -62,7 +62,7 @@ body {
 }
 
 #one {
-    background-image: url(./assests/eatin.webp);
+    background-image: url(./assets/images/eatin.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover
@@ -70,7 +70,7 @@ body {
 
 #two {
     background-position: center;
-    background-image: url(./assests/eatout.webp);
+    background-image: url(./assets/images/eatout.webp);
     background-repeat: no-repeat;
     background-size: cover
 }
