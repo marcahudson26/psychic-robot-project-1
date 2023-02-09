@@ -1,0 +1,312 @@
+:root {
+    --bs-link-color: black;
+    --main-color: #a17594;
+    --sec-color: #ffcfd2;
+}
+
+body {
+    background-color: var(--main-color);
+}
+
+/* Nav */
+.custom-dropdown {
+    z-index: 2;
+}
+.custom-dropdown-menu {
+    background-color: white;
+    padding: 5px;
+}
+.custom-dropdown-item {
+    background-color: var(--sec-color);
+    font-size: 1.5rem;
+}
+.custom-dropdown-item:focus, 
+.custom-dropdown-item:hover {
+    color: var(--bs-link-color);
+    background-color: var(--main-color);
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.overlay {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/* Banner */
+.custom-jumbotron-fluid {
+    --bs-border-color: black;
+    --bs-border-width: 5px;
+    background-image: url(../images/banner.webp);
+    background-position: center;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+.banner-container {
+    bottom: 50px;
+}
+.banner {
+    background-color: var(--sec-color);
+    border-radius: 100%;
+    padding: 10px;
+    height: 380px;
+}
+
+header,
+footer {
+    background: var(--bg-color);
+}
+.btn,
+.nav-link {
+    --bs-btn-bg: #ffcfd2;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: #c799b9;
+    --bs-btn-active-bg: #a17594;
+    --bs-btn-color: black;
+
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-hover-bg: #ffcfd2;
+    --bs-btn-hover-border-color: #ffcfd2;
+    --bs-btn-active-border-color: #ffcfd2;
+}
+
+/* Footer */
+.footer-nav {
+    justify-content: space-around;
+}
+.custom-nav-item a {
+    background-color: var(--sec-color);
+    border: 2px solid;
+}
+
+
+#favRestaurants {
+
+    background-color: var(--main-color);
+    border: 5px solid black;
+    padding: 10px;
+    margin: 15px;
+}
+
+.restaurant-btn{
+    background-color: var(--sec-color);
+    margin-top: 10px;
+    font-size: 2.5rem;
+}
+
+/*Social Media Icons*/
+.wrapper .icon{
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 22px;
+    display: inline-block;
+    align-items: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    color: #333;
+    text-decoration: none;
+  }
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background-color: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  .wrapper .facebook:hover,
+  .wrapper .facebook:hover .tooltip,
+  .wrapper .facebook:hover .tooltip::before {
+    background-color: #3b5999;
+    color: #ffffff;
+  }
+  .wrapper .twitter:hover,
+  .wrapper .twitter:hover .tooltip,
+  .wrapper .twitter:hover .tooltip::before {
+    background-color: #46c1f6;
+    color: #ffffff;
+  }
+  .wrapper .instagram:hover,
+  .wrapper .instagram:hover .tooltip,
+  .wrapper .instagram:hover .tooltip::before {
+    background-color: #e1306c;
+    color: #ffffff;
+  }
+  .wrapper .github:hover,
+  .wrapper .github:hover .tooltip,
+  .wrapper .github:hover .tooltip::before {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  .wrapper .youtube:hover,
+  .wrapper .youtube:hover .tooltip,
+  .wrapper .youtube:hover .tooltip::before {
+    background-color: #de463b;
+    color: #ffffff;
+  }
+
+
+
+
+/* Marc's Code */
+/* :root {
+    --bs-link-color: black;
+    --main-color: #a17594;
+    --sec-color: #ffcfd2;
+}
+
+.btn,
+.nav-link {
+    --bs-btn-bg: #ffcfd2;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: #c799b9;
+    --bs-btn-active-bg: #a17594;
+    --bs-btn-color: black;
+
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-hover-bg: #ffcfd2;
+    --bs-btn-hover-border-color: #ffcfd2;
+    --bs-btn-active-border-color: #ffcfd2;
+}
+
+.jumbotron-fluid {
+    --bs-border-color: black;
+    --bs-border-width: 5px;
+}
+
+body {
+    background-color: var(--main-color);
+}
+
+.container {
+    bottom: 50px;
+}
+
+.jumbotron-fluid {
+    background-image: url(./katie-smith-uQs1802D0CQ-unsplash.jpg);
+    background-position: center;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.mainImage {
+    background-color: var(--sec-color);
+    border-radius: 100%;
+    padding: 10px;
+    height: 380px;
+}
+
+.card {
+    background-color: #ffcfd2;
+    padding: 5px;
+    min-height: 400px;
+    border-color: rgb(55, 27, 27);
+    border-width: 5px;
+}
+
+.form-label {
+    color: black
+}
+
+#meal {
+    color: black;
+    background-color:white;
+}
+
+#submit {
+    border-radius: 10px;
+    background-color: #cc7076;
+}
+
+#name, #ingredients, #instructions, #youtube {
+    color: whitesmoke;
+}
+.inner-card {
+    background-color: #cc7076;
+    padding: 5px;
+    margin: 2px;
+    min-height: 90px;
+    border-color: rgb(55, 27, 27);
+    border-width: 5px;
+}
+
+header,
+footer {
+    background: var(--bg-color);
+}
+
+.nav {
+    justify-content: space-around;
+}
+
+.nav-link {
+    background-color: var(--sec-color);
+    border: 2px solid;
+}
+
+.dropdown {
+    z-index: 2;
+}
+
+.dropdown-menu {
+    background-color: white;
+    padding: 5px;
+}
+
+.dropdown-item {
+    background-color: var(--sec-color);
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.overlay {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+} */
