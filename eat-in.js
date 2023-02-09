@@ -1,5 +1,6 @@
 let mealInput = document.querySelector('#meal');
 let searchedMeals = [];
+let favMeals = [];
 
 mealHistory = localStorage.getItem("meal")
 if (mealHistory) {
@@ -103,11 +104,26 @@ document.getElementById("submit").addEventListener("click", function (event) {
 
     
     document.querySelector("#favourite").addEventListener("click",function(event){
-            console.log(event.target.dataset.name); 
+        let favHistory = JSON.parse(localStorage.getItem("favouriteMeal"));
+        if (favHistory !== null) {
+            favMeals = favHistory;
+        }
+        let favMeal = event.target.dataset.name
+        console.log(favMeal); 
+        favMeals.push(favMeal);
+        favMeals = [...new Set(favMeals)];
+        localStorage.setItem("favouriteMeal", JSON.stringify(favMeals));    
+        console.log(favMeals); 
         })
 
 
-
+// blur screen on nav-bar click
+$('.dropdown').on('show.bs.dropdown', function () {
+    document.querySelector(".overlay").classList.remove("d-none")
+})
+$('.dropdown').on('hide.bs.dropdown', function () {
+    document.querySelector(".overlay").classList.add("d-none")
+})
 
 
 
