@@ -22,8 +22,6 @@ let list = document.getElementById("meal-list");
 list.appendChild(mealList);
 }
 
-
-
 document.getElementById("submit").addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -61,8 +59,11 @@ document.getElementById("submit").addEventListener("click", function (event) {
             }
 
             //for the meal name
-            document.getElementById("name").innerHTML = "NAME";
-            document.getElementById("name").innerHTML += ':' + ' ' + response.meals[0].strMeal;
+            document.getElementById("name").textContent = "NAME";
+            document.getElementById("name").textContent += ':' + ' ' + response.meals[0].strMeal;
+            document.getElementById("favourites-span").innerHTML = `<button class="btn btn-primary" data-name="${response.meals[0].strMeal}" id="favourites-button">FAVOURITES</button>`
+           
+
             //for the the thumbnail image
             document.getElementById("foodpic").src = response.meals[0].strMealThumb;
             //this gets the ingriedents
@@ -99,7 +100,20 @@ document.getElementById("submit").addEventListener("click", function (event) {
 
             
         })
-    const options = {
+
+    
+    document.querySelector("#favourite").addEventListener("click",function(event){
+            console.log(event.target.dataset.name); 
+        })
+
+
+
+
+
+
+
+
+   /*  const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': 'bda18aceb6msh4cfb8ec1d5bdafep1699e7jsnf33daa16b16d',
@@ -108,7 +122,7 @@ document.getElementById("submit").addEventListener("click", function (event) {
     };
 
 
-    /*fetch request with loop to pull put the ingredients and push into the ingredients array
+   fetch request with loop to pull put the ingredients and push into the ingredients array
     fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${meal}`, options)
         .then(response => response.json())
         .then(response => {
