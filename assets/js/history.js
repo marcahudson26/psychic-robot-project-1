@@ -5,10 +5,22 @@ let favRestaurantsDiv = document.querySelector("#favRestaurants");
 //we are retrieving from the local storage and storing it into
 let storedFavRestaurants = JSON.parse(localStorage.getItem("favRestaurants"));
 
-//console what we want to see
-console.log(storedFavRestaurants);
+
+//this is selecting a container where my "fav meals" are going to
+let favMealsDiv = document.querySelector("#favMeals");
+
+//we are retrieving from the local storage and storing it into
+let storedFavMeals = JSON.parse(localStorage.getItem("favRestaurants"));
+
+
+
 displayRestaurant();
 function displayRestaurant () {
+    // create/set content/append  favorite meals heading
+    let favRestaurantH1 = document.createElement("h1");
+    favRestaurantH1.setAttribute("id", "fav-restaurant-heading")
+    favRestaurantH1.textContent = "Favorite Restaurants";
+    favRestaurantsDiv.append(favRestaurantH1);
     // function to display fav restaurants on the page
     for (let i = 0; i < storedFavRestaurants.length; i++) {
         // getting the restaurant name 
@@ -19,6 +31,28 @@ function displayRestaurant () {
                                     <button class="col-lg-12 restaurant-btn">${restaurant}</button>
                                     `
         favRestaurantsDiv.append(restaurantDiv);
+    }
+    
+}
+
+displayMeals();
+function displayMeals () {
+    // create/set content/append  favorite meals heading
+    let favMealsH1 = document.createElement("h1")
+    favMealsH1.setAttribute("id", "fav-meal-heading")
+    favMealsH1.textContent = "Favorite Meals"
+    favMealsDiv.append(favMealsH1);
+    // function to display fav restaurants on the page
+    for (let i = 0; i < storedFavMeals.length; i++) {
+        console.log(storedFavMeals[i]);
+        // getting the restaurant name 
+        const meal = storedFavMeals[i];
+        // create/set content/append favorite meals
+        let mealsDiv = document.createElement("div")
+        mealsDiv.innerHTML = `
+                                    <button class="col-lg-12 meal-btn">${meal}</button>
+                                    `
+        favMealsDiv.append(mealsDiv);
     }
     
 }

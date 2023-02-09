@@ -86,7 +86,24 @@ footer {
 }
 
 
+.custom-row{
+    justify-content: space-between;
+}
+#fav-meal-heading{
+    font-size: 3.5rem;
+    text-align: center;
+}
+#fav-restaurant-heading{
+    font-size: 3.5rem;
+    text-align: center;
+}
 #favRestaurants {
+    background-color: var(--main-color);
+    border: 5px solid black;
+    padding: 10px;
+    margin: 15px;
+}
+#favMeals {
 
     background-color: var(--main-color);
     border: 5px solid black;
@@ -95,6 +112,11 @@ footer {
 }
 
 .restaurant-btn{
+    background-color: var(--sec-color);
+    margin-top: 10px;
+    font-size: 2.5rem;
+}
+.meal-btn{
     background-color: var(--sec-color);
     margin-top: 10px;
     font-size: 2.5rem;
