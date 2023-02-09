@@ -5,7 +5,7 @@ let favRestaurantsDiv = document.querySelector("#favRestaurants");
 //we are retrieving from the local storage and storing it into
 let storedFavRestaurants = JSON.parse(localStorage.getItem("favRestaurants"));
 
-//We console what we want to see
+//console what we want to see
 console.log(storedFavRestaurants);
 displayRestaurant();
 function displayRestaurant () {
@@ -22,6 +22,14 @@ function displayRestaurant () {
     }
     
 }
+
+
+
+
+
+
+
+
 
 
 
