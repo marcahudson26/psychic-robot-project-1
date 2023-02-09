@@ -64,7 +64,9 @@ body {
 
 }
 
-
+#foodpic {
+    max-width: 500px;
+}
 #meal {
     color: black;
     background-color:white;

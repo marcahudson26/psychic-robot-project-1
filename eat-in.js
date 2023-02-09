@@ -64,7 +64,7 @@ document.getElementById("submit").addEventListener("click", function (event) {
             document.getElementById("name").innerHTML = "NAME";
             document.getElementById("name").innerHTML += ':' + ' ' + response.meals[0].strMeal;
             //for the the thumbnail image
-            document.getElementById("foodpic").innerHTML = response.meals[0].strMealThumb;
+            document.getElementById("foodpic").src = response.meals[0].strMealThumb;
             //this gets the ingriedents
             document.getElementById("ingredients").innerHTML = "INGREDIENTS";
             document.getElementById("ingredients").innerHTML += ':' + ' ' + recipeIngriedents;
@@ -72,8 +72,8 @@ document.getElementById("submit").addEventListener("click", function (event) {
             document.getElementById("instructions").innerHTML = "INSTRUCTIONS";
             document.getElementById("instructions").innerHTML += ':' + ' ' + response.meals[0].strInstructions;
             // for the youtube video link
-            document.getElementById("youtube").innerHTML = "YOUTUBE";
-            document.getElementById("youtube").innerHTML += ':' + ' ' + response.meals[0].strYoutube;
+            document.getElementById("youtube").href = response.meals[0].strYoutube;
+            document.getElementById("youtube").textContent = response.meals[0].strYoutube;
 
             // localStorage.setItem("meal", JSON.stringify(searchedMeals));
            
