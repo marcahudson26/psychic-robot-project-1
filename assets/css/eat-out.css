@@ -126,6 +126,16 @@ form{
 .hide {
     display: none;
 }
+.hideRestaurantInfo{
+    display: none;
+}
+#restaurantInfo{
+    /* justify-content: center; */
+}
+.restaurant-card{
+    width: 100%;
+    background-color: var(--sec-color);
+}
 
 
 /* Footer */

@@ -5,7 +5,7 @@ let completeLocationName;
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '7459094a29mshad16f6228de91d6p184fa3jsncd93466b41d1',
+        'X-RapidAPI-Key': 'effe14985cmsh962d7b641918161p1bf3e5jsn92b6af363b24',
         'X-RapidAPI-Host': 'the-fork-the-spoon.p.rapidapi.com'
     }
 };
@@ -129,13 +129,31 @@ function renderNearbyRestaurants (restaurantsData) {
         restaurantBtns.setAttribute("id", "restaurantDiv")
         restaurantBtns.setAttribute("class", "row")
         restaurantBtns.innerHTML = `
-                                    <button class="restaurant-button col-lg-9" id= "${restaurant.id}">${restaurant.name}</button>
+                                    <button class="restaurant-button col-lg-9" id= "${restaurant.id}" >${restaurant.name}</button>
                                     <button class="col-lg-2" id = "fav-btn">add to fav</button>
+                                    <div id="restaurantInfo" class="hideRestaurantInfo col-lg-11">
+                                        <div class="card card-body restaurant-card">
+                                            <img src="${restaurant.mainPhotoSrc}" class="card-img-top" alt="restaurant cover image">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Address</h5>
+                                                <p class="card-text">Street: ${restaurant.address.street}</p>
+                                                <p class="card-text">Postcode: ${restaurant.address.postalCode}</p>
+                                                <p class="card-text">Locality: ${restaurant.address.locality}</p>
+                                                <p class="card-text">Country: ${restaurant.address.country}</p>
+                                                <h5 class="card-title">The fork Rating</h5>
+                                                <p class="card-text">${restaurant.aggregateRatings.thefork.ratingValue}</p>
+                                                <h5 class="card-title">Cuisine</h5>
+                                                <p class="card-text">${restaurant.servesCuisine}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     `;
         document.querySelector("#restaurant-container").append(restaurantBtns);
     }   
     // Event listener to store favorite restaurants in search history 
     document.querySelector("#restaurant-container").addEventListener("click", addFavorite); 
+    // Event listener to display restaurant info 
+    document.querySelector("#restaurant-container").addEventListener("click", renderRestaurantInfo); 
     // Display updated search history on page
     renderSearchHistory();
 }
@@ -174,6 +192,7 @@ function renderRestaurantFromHistory(event) {
     }
 }
 
+// Function to add restaurant as favorite
 function addFavorite(event) {
     if (event.target.matches("#fav-btn")){
         isFavRestaurants = JSON.parse(localStorage.getItem("favRestaurants"));
@@ -189,6 +208,19 @@ function addFavorite(event) {
         console.log(restaurantName);
     }
 }
+
+// Function to display restaurant info on restaurant button click
+function renderRestaurantInfo(event) {
+    if (event.target.matches(".restaurant-button")){
+
+    let restaurantBtn = event.target;
+    console.log(restaurantBtn.parentElement.children);
+    restaurantBtn.parentElement.children[2].classList.toggle('hideRestaurantInfo');
+
+    }
+    
+}
+
 
 // blur screen on nav-bar click
 $('.dropdown').on('show.bs.dropdown', function () {
