@@ -37,6 +37,10 @@ function displayRestaurant () {
 
 
 
+
+
+
+
 // blur screen on nav-bar click
 $('.dropdown').on('show.bs.dropdown', function () {
     document.querySelector(".overlay").classList.remove("d-none")
