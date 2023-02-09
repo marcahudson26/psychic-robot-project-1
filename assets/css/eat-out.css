@@ -57,6 +57,14 @@ body {
     padding: 10px;
     height: 380px;
 }
+#title-span{
+    bottom: 0;
+    font-size: 2.5rem;
+    background-color: var(--sec-color);
+    border: 2px solid black;
+    padding: 10px;
+    left: 24%;
+}
 
 header,
 footer {
@@ -116,6 +124,13 @@ form{
     height: 5rem;
     border-radius: 0.375rem;
 }
+.fav-icon {
+    font-size: 20px;
+}
+.fav-icon:hover {
+    font-size: 30px;
+    transition: all 0.3s ease-in-out;
+  }
 .restaurant-button{
     background-color: var(--sec-color);
     margin-top: 10px;
@@ -126,6 +141,17 @@ form{
 .hide {
     display: none;
 }
+.hideRestaurantInfo{
+    display: none;
+}
+.restaurant-card{
+    width: 100%;
+    background-color: var(--sec-color);
+}
+.restaurant-card:hover{
+    width: 102%;
+}
+
 
 
 /* Footer */
