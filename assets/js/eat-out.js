@@ -10,16 +10,16 @@ const options = {
     }
 };
 
-init ()
-function init (){
+init()
+function init() {
     // Display form to search for restaurants by city
-    renderSearchCityForm ();
+    renderSearchCityForm();
     // Display search history on page
     renderSearchHistory();
 }
 
 // Function to render form to search city for restaurants available
-function renderSearchCityForm () {
+function renderSearchCityForm() {
     let searchForm = document.createElement("form");
     searchForm.setAttribute("class", "search-form col-lg-12 text-center");
     searchForm.innerHTML = `
@@ -34,17 +34,17 @@ function renderSearchCityForm () {
 }
 
 // Function to handle click on button to find restaurants in city
-function findRestaurant (event) {
+function findRestaurant(event) {
     // Prevent searh form default to save form input
     event.preventDefault();
     // Store search input value (i.e, name of city)
     locationInput = document.querySelector("#inputCity").value
-    if (locationInput ==="") {
+    if (locationInput === "") {
         document.querySelector("#find-restaurants").setAttribute("data-bs-toggle", "modal");
         document.querySelector("#find-restaurants").setAttribute("data-bs-target", "#exampleModal");
-        
+
         // if no city is entered
-        
+
         alert("Please enter valid City")
         return;
     }
@@ -54,16 +54,16 @@ function findRestaurant (event) {
 }
 
 // Function to store searched cities to local storage
-function storeSearchedCity (){
+function storeSearchedCity() {
     isSearchHistory = localStorage.getItem("searchHistory")
     if (isSearchHistory) {
         // If there is search hitory update searched cities array
-        searchedCities = JSON.parse(localStorage.getItem("searchHistory")); 
+        searchedCities = JSON.parse(localStorage.getItem("searchHistory"));
     }
     else if (searchedCities === null) {
         // If there is no search history reset class from null to array
-        searchedCities = []; 
-    }  
+        searchedCities = [];
+    }
     searchedCities.push(locationInput);
     // Reverse searched cities array and remove duplicates
     searchedCities = [...new Set(searchedCities.reverse())];
@@ -74,48 +74,48 @@ function storeSearchedCity (){
 }
 
 // Function to find lon, lat and city id for searched city
-function getGeolocation () {   
+function getGeolocation() {
     // get info on location full address, lat/lon and location id for restaurant search
     fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/auto-complete?text=${locationInput}`, options)
-    .then(response => response.json())
-    .then(completedLocation => {
-        // retrieve autocompleted location id, name & type
-        let locationId = completedLocation.data.geolocation[0].id.id;
-        let geoText = completedLocation.data.geolocation[0].name.text;
-        let locationType = completedLocation.data.geolocation[0].id.type;
-        // convert location text to api format
-        geoText = geoText.replace(/,/g, '%2C');
-        geoText = geoText.replace(/ /g, '%20');
-        return fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/list?google_place_id=${locationId}&geo_ref=false&geo_text=${geoText}&geo_type=${locationType}`, options)
-    })
-    
-    .then(response => response.json())
-    .then(cityGeo => {
-        let lat = cityGeo.coordinates.latitude;
-        let lon = cityGeo.coordinates.longitude;
-        let cityId = cityGeo.id_city;
-        let fullAddress = cityGeo.prediction.address_components;
-        completeLocationName = fullAddress;
-        console.log(fullAddress);
-        return getRestaurants (cityId)
-    })
-    .catch(err => console.error(err));
+        .then(response => response.json())
+        .then(completedLocation => {
+            // retrieve autocompleted location id, name & type
+            let locationId = completedLocation.data.geolocation[0].id.id;
+            let geoText = completedLocation.data.geolocation[0].name.text;
+            let locationType = completedLocation.data.geolocation[0].id.type;
+            // convert location text to api format
+            geoText = geoText.replace(/,/g, '%2C');
+            geoText = geoText.replace(/ /g, '%20');
+            return fetch(`https://the-fork-the-spoon.p.rapidapi.com/locations/v2/list?google_place_id=${locationId}&geo_ref=false&geo_text=${geoText}&geo_type=${locationType}`, options)
+        })
+
+        .then(response => response.json())
+        .then(cityGeo => {
+            let lat = cityGeo.coordinates.latitude;
+            let lon = cityGeo.coordinates.longitude;
+            let cityId = cityGeo.id_city;
+            let fullAddress = cityGeo.prediction.address_components;
+            completeLocationName = fullAddress;
+            console.log(fullAddress);
+            return getRestaurants(cityId)
+        })
+        .catch(err => console.error(err));
 }
 
 // Function to find restaurants available in searched city
-function getRestaurants (cityId) {
+function getRestaurants(cityId) {
     // get list of restaurant in nearby
     fetch(`https://the-fork-the-spoon.p.rapidapi.com/restaurants/v2/list?queryPlaceValueCityId=${cityId}&pageSize=10&pageNumber=1`, options)
-	.then(response => response.json())
-	.then(restaurants => {
-        let restaurantsData = restaurants.data
-        return renderNearbyRestaurants (restaurantsData)
-    })
-	.catch(err => console.error(err));  
+        .then(response => response.json())
+        .then(restaurants => {
+            let restaurantsData = restaurants.data
+            return renderNearbyRestaurants(restaurantsData)
+        })
+        .catch(err => console.error(err));
 }
 
 // Function to display restaurants found for searched city
-function renderNearbyRestaurants (restaurantsData) {
+function renderNearbyRestaurants(restaurantsData) {
     // Reset content for restaurants container
     document.querySelector("#restaurant-container").textContent = "";
     // Display styles for restaurants container (i.e., change style from display none to block)
@@ -133,9 +133,9 @@ function renderNearbyRestaurants (restaurantsData) {
                                     <button class="col-lg-2" id = "fav-btn">add to fav</button>
                                     `;
         document.querySelector("#restaurant-container").append(restaurantBtns);
-    }   
+    }
     // Event listener to store favorite restaurants in search history 
-    document.querySelector("#restaurant-container").addEventListener("click", addFavorite); 
+    document.querySelector("#restaurant-container").addEventListener("click", addFavorite);
     // Display updated search history on page
     renderSearchHistory();
 }
@@ -155,14 +155,14 @@ function renderSearchHistory() {
                                         <button class="btn city-button col-lg-12" id = "${city}-button">${capitalizeFirstLetter(city)}</button>
                                         `;
             document.querySelector("#search-history").prepend(cityBtns);
-        } 
-    }    
+        }
+    }
 }
-                        
+
 // Function to capitalize the first letter of cities displayed in search history
 function capitalizeFirstLetter(city) {
     return city.charAt(0).toUpperCase() + city.slice(1);
-} 
+}
 
 // Function to display restaurants from click of button in search history
 function renderRestaurantFromHistory(event) {
@@ -170,14 +170,14 @@ function renderRestaurantFromHistory(event) {
         // Set default for displaying weather info to London
         locationInput = event.target.textContent;
         // find restaurants available for inputted city
-        getGeolocation();   
+        getGeolocation();
     }
 }
 
 function addFavorite(event) {
-    if (event.target.matches("#fav-btn")){
+    if (event.target.matches("#fav-btn")) {
         // Restaurant name/id
-        let restaurantName =(event.target).previousElementSibling.textContent;
+        let restaurantName = (event.target).previousElementSibling.textContent;
         // store restaurant name 
         favRestaurants.push(restaurantName);
         localStorage.setItem("favRestaurants", JSON.stringify(favRestaurants));
@@ -200,90 +200,110 @@ document.querySelector("#search-history").addEventListener("click", renderRestau
 document.querySelector("#find-restaurants").addEventListener("click", findRestaurant);
 
 
-// Marc's Code
-// let userInput = "sushi"
+// Marc's Code using origanal APi for eat out with map image, website link, phone number opening times.
+// const apiKey = `85ab5ccbe5924069b86a34a443887846`
 
-// // this gets the ingredients
-// fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${userInput}`)
-//     .then(response => response.json())
-//     .then(response => {
+// const button = document.getElementById("buttonSearch");
 
-//         if (!response.meals) {
-//             // if there is no data throw an error
-//             throw "No Data";
-//         }
-//         const meal = response.meals[0]
-//         const ingredients = []
-//         const measurements = []
-
-//         for (const key in meal) {
-//             //because the api response doesn't  contain an array of ingredients we loop thought the keys to create an array
-//             if (key.startsWith("strIngredient")) {
-//                 if (meal[key] !== "") {
-//                     ingredients.push(meal[key].trim())
-//                 }
-//             }
-//             if (key.startsWith("strMeasure")) {
-//                 if (meal[key] !== "") {
-//                     measurements.push(meal[key].trim())
-//                 }
-//             }
-//         }
-//         const recipeIngredents = []
-//         for (let i = 0; i < ingredients.length; i++) {
-//             const ingredent = ingredients[i];
-//             const measurement = measurements[i]
-//             recipeIngredents.push(`${measurement} ${ingredent}`)
-//         }
-//         //for the meal name
-//         console.log(response.meals[0].strMeal)
-//         //this gets the ingredents
-//         console.log(recipeIngredents)
-//         //cooking instructions
-//         console.log(response.meals[0].strInstructions)
-//         //for the the thumbnail image
-//         console.log(response.meals[0].strMealThumb)
-//         // for the u tube video link
-//         console.log(response.meals[0].strYoutube)
-//         console.log(ingredients)
-//     })
-
-//     .catch(() => {
-//         // if there is an error render some error message
-//         console.log("There was an error")
-//     })
-
-
-// userInput = "burger"
-
-// const options = {
-//     method: 'GET',
-//     headers: {
-//         'X-RapidAPI-Key': 'bda18aceb6msh4cfb8ec1d5bdafep1699e7jsnf33daa16b16d',
-//         'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com'
+// document.getElementById("location").addEventListener("input", (e) => {
+//     if (e.target.value === "") {
+//         button.classList.add("disabled")
+//         return;
 //     }
-// };
-//fetch request with loop to pull put the ingredients and push into the ingredients array
-// fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${userInput}`, options)
-//     .then(response => response.json())
-//     .then(response => {
-//         ingredients = []
-//         const path = response.hits[3].recipe.ingredientLines
-//         for (let i = 0; i < path.length; i++) {
-//             ingredients.push(path[i]);
-//         }
-//         // meal name
-//         console.log(response.q)
-//         // ingredients
-//         console.log(ingredients)
-//         // calorie content
-//         console.log(Math.trunc(response.hits[3].recipe.calories))
-//         // // fat content an nutrience
-//         console.log(response.hits[3].recipe.digest)
-//         // health lables
-//         console.log(response.hits[3].recipe.healthLabels)
-//         //image
-//         console.log(response.hits[3].recipe.image)
-//         //link to cooking istructions
-//         console.log(response.hits[3].recipe.url)
+//     button.classList.remove("disabled");
+// });
+
+// function setLoading(isLoading) {
+//     const loadingSpinner = document.querySelector("#buttonSearch .loading")
+//     if (isLoading) {
+//         loadingSpinner.classList.remove("d-none");
+//         button.classList.add("disabled")
+//         return
+//     }
+//     loadingSpinner.classList.add("d-none");
+//     button.classList.remove("disabled")
+// }
+
+// function saveCache(places) {
+//     localStorage.setItem("location-history", JSON.stringify(places));
+// }
+
+// function getCache() {
+//     if (localStorage.getItem("location-history") === null) {
+//         return [];
+//     }
+//     return JSON.parse(localStorage.getItem("location-history"));
+// }
+
+
+// function getSpecificPlace(e) {
+//     const { id } = e.dataset;
+
+//     const width = 400;
+//     const height = 300;
+
+//     const place = getCache().find(history => history.properties.place_id === id).properties
+//     const lon = place.lon
+//     const lat = place.lat
+
+//     let website = "";
+//     if (place.datasource.raw.website) {
+//         website = `<p><a target="_blank" href="${place.datasource.raw.website}">Website</a></p>`
+//     }
+
+//     let openingHours = ""
+//     if (place.datasource.raw.opening_hours) {
+//         openingHours = `<p> Opening hours ${place.datasource.raw.opening_hours}</p>`
+//     }
+
+//     let phone = "";
+//     if (place.datasource.raw.phone) {
+//         phone = `<p>Contact Number: <a href="tel:${place.datasource.raw.phone}">${place.datasource.raw.phone}</a></p>`
+//     }
+
+//     document.getElementById("selected-restaurant").innerHTML = `
+//         <h1>${place.name}</h1>
+//         ${website}
+//         <p> ${place.address_line2}</p>
+//         ${openingHours}
+//         ${phone}
+//         <img width="${width}" height="${height}" class="map-image" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=${width}&height=${height}&center=lonlat:${lon},${lat}&zoom=13&marker=lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome|lonlat:${lon},${lat};type:material;color:%23ff3421;icontype:awesome&apiKey=${apiKey}"></img>
+//     `
+// }
+
+// // https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=400&center=lonlat%3A-122.29009844646316%2C47.54607447032754&zoom=14.3497&marker=lonlat%3A-122.29188334609739%2C47.54403990655936%3Btype%3Aawesome%3Bcolor%3A%23bb3f73%3Bsize%3Ax-large%3Bicon%3Apaw%7Clonlat%3A-122.29282631194182%2C47.549609195001494%3Btype%3Amaterial%3Bcolor%3A%234c905a%3Bicon%3Atree%3Bicontype%3Aawesome%7Clonlat%3A-122.28726954893025%2C47.541766557545884%3Btype%3Amaterial%3Bcolor%3A%234c905a%3Bicon%3Atree%3Bicontype%3Aawesome&apiKey=85ab5ccbe5924069b86a34a443887846
+
+// button.addEventListener("click", e => {
+//     e.preventDefault();
+
+//     const locationSelecton = document.getElementById("location").value;
+//     setLoading(true)
+//     getLocation(locationSelecton).then(placeId => {
+//         getRestaurants(placeId).then(restaurants => {
+//             const places = restaurants.features.filter(x => x.properties.name)
+//             saveCache(places);
+
+//             document.getElementById("input-locations").innerHTML = `
+//                 ${places.map(place => `<button class="btn" data-id="${place.properties.place_id}" onclick="getSpecificPlace(this)">${place.properties.name}</button>`).join("")}
+//             `
+
+//             setLoading(false)
+//         })
+//     }).catch(() => {
+//         setLoading(false)
 //     })
+// })
+
+
+
+// function getLocation(place) {
+//     return fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${place}&type=city&format=json&apiKey=${apiKey}`)
+//         .then(response => response.json())
+//         .then(result => result.results[0].place_id);
+// }
+
+// function getRestaurants(placeId) {
+//     return fetch(`https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=place:${placeId}&limit=20&apiKey=${apiKey}`)
+//         .then(response => response.json())
+//         .then(result => result)
+// }
