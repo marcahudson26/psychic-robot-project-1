@@ -116,6 +116,13 @@ form{
     height: 5rem;
     border-radius: 0.375rem;
 }
+.fav-icon {
+    font-size: 20px;
+}
+.fav-icon:hover {
+    font-size: 30px;
+    transition: all 0.3s ease-in-out;
+  }
 .restaurant-button{
     background-color: var(--sec-color);
     margin-top: 10px;
@@ -128,9 +135,6 @@ form{
 }
 .hideRestaurantInfo{
     display: none;
-}
-#restaurantInfo{
-    /* justify-content: center; */
 }
 .restaurant-card{
     width: 100%;

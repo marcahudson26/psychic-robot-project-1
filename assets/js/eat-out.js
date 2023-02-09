@@ -40,14 +40,13 @@ function findRestaurant (event) {
     // Store search input value (i.e, name of city)
     locationInput = document.querySelector("#inputCity").value
     if (locationInput ==="") {
-        document.querySelector("#find-restaurants").setAttribute("data-bs-toggle", "modal");
-        document.querySelector("#find-restaurants").setAttribute("data-bs-target", "#exampleModal");
-        
         // if no city is entered
-        
-        alert("Please enter valid City")
+        document.querySelector("#inputCityHelp").style.color = "red";
+        document.querySelector("#inputCityHelp").style.fontSize = "1.275em";
         return;
     }
+    document.querySelector("#inputCityHelp").style.color = 'black'
+    document.querySelector("#inputCityHelp").style.fontSize = ".875em";
     storeSearchedCity();
     // find restaurants available for inputted city
     getGeolocation();
@@ -96,7 +95,6 @@ function getGeolocation () {
         let cityId = cityGeo.id_city;
         let fullAddress = cityGeo.prediction.address_components;
         completeLocationName = fullAddress;
-        console.log(fullAddress);
         return getRestaurants (cityId)
     })
     .catch(err => console.error(err));
@@ -124,13 +122,12 @@ function renderNearbyRestaurants (restaurantsData) {
     // render restaurant list to page
     for (let i = 0; i < restaurantsData.length; i++) {
         const restaurant = restaurantsData[i];
-        console.log(restaurantsData[i])
         let restaurantBtns = document.createElement("div");
         restaurantBtns.setAttribute("id", "restaurantDiv")
         restaurantBtns.setAttribute("class", "row")
         restaurantBtns.innerHTML = `
                                     <button class="restaurant-button col-lg-9" id= "${restaurant.id}" >${restaurant.name}</button>
-                                    <button class="col-lg-2" id = "fav-btn">add to fav</button>
+                                    <button class="col-lg-2" id = "fav-btn"><i class="fas fa-star fav-icon"></i></button>
                                     <div id="restaurantInfo" class="hideRestaurantInfo col-lg-11">
                                         <div class="card card-body restaurant-card">
                                             <img src="${restaurant.mainPhotoSrc}" class="card-img-top" alt="restaurant cover image">
@@ -205,7 +202,6 @@ function addFavorite(event) {
         favRestaurants.push(restaurantName);
         favRestaurants = [...new Set(favRestaurants.reverse())];
         localStorage.setItem("favRestaurants", JSON.stringify(favRestaurants));
-        console.log(restaurantName);
     }
 }
 
@@ -214,7 +210,6 @@ function renderRestaurantInfo(event) {
     if (event.target.matches(".restaurant-button")){
 
     let restaurantBtn = event.target;
-    console.log(restaurantBtn.parentElement.children);
     restaurantBtn.parentElement.children[2].classList.toggle('hideRestaurantInfo');
 
     }
