@@ -176,10 +176,15 @@ function renderRestaurantFromHistory(event) {
 
 function addFavorite(event) {
     if (event.target.matches("#fav-btn")){
+        isFavRestaurants = JSON.parse(localStorage.getItem("favRestaurants"));
+        if (isFavRestaurants !== null) {
+            favRestaurants = isFavRestaurants;
+        }
         // Restaurant name/id
         let restaurantName =(event.target).previousElementSibling.textContent;
-        // store restaurant name 
+        // store restaurant name and remove duplicates
         favRestaurants.push(restaurantName);
+        favRestaurants = [...new Set(favRestaurants.reverse())];
         localStorage.setItem("favRestaurants", JSON.stringify(favRestaurants));
         console.log(restaurantName);
     }
