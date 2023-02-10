@@ -1,3 +1,4 @@
+
 let mealInput = document.querySelector('#meal');
 let searchedMeals = [];
 let favMeals = [];
@@ -98,8 +99,6 @@ document.getElementById("submit").addEventListener("click", function (event) {
             let list = document.getElementById("meal-list");
             list.appendChild(mealList);
             }
-
-            
         })
 
     
@@ -116,14 +115,18 @@ document.getElementById("submit").addEventListener("click", function (event) {
         console.log(favMeals); 
         })
 
+           // blur screen on nav-bar click
+           $('.dropdown').on('show.bs.dropdown', function () {
+            document.querySelector(".overlay").classList.remove("d-none")
+        })
+        $('.dropdown').on('hide.bs.dropdown', function () {
+            document.querySelector(".overlay").classList.add("d-none")
+        })
 
-// blur screen on nav-bar click
-$('.dropdown').on('show.bs.dropdown', function () {
-    document.querySelector(".overlay").classList.remove("d-none")
-})
-$('.dropdown').on('hide.bs.dropdown', function () {
-    document.querySelector(".overlay").classList.add("d-none")
-})
+    }) 
+
+
+      
 
 
 
@@ -162,4 +165,3 @@ $('.dropdown').on('hide.bs.dropdown', function () {
             //link to cooking istructions
             console.log(response.hits[3].recipe.url)
         }) */
-}) 
