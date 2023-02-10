@@ -107,10 +107,10 @@ This README provides more context and helps to prioritize features that are most
 - Organized README document with "Unique Name, Description, Technologies used, Screenshots, and Link to deployed Application".
 #
 >## Screenshots:
-
+![Screenshot](./assets/images/screenshot.png)
 #
 
 >## Deployment Link:
-
+https://marcahudson26.github.io/psychic-robot-project-1
 ##
 
